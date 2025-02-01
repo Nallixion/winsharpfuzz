@@ -7,7 +7,7 @@
 [nuget-shield]: https://img.shields.io/nuget/v/WinSharpFuzz.svg
 [nuget-link]: https://www.nuget.org/packages/WinSharpFuzz
 [build-shield]: https://ci.appveyor.com/api/projects/status/91tx1501qeev5rwf?svg=true 
-[build-link]: https://ci.appveyor.com/project/nathaniel-bennett/winsharpfuzz
+[build-link]: https://ci.appveyor.com/project/nallixion/winsharpfuzz
 [license-shield]: https://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license-link]: https://github.com/metalnem/sharpfuzz/blob/master/LICENSE
 
@@ -19,19 +19,23 @@
 
 ## Table of Contents
 
-1. [Acknowledgements](#acknowledgements)
-2. [Requirements](#requirements)
-3. [Installation](#installation)
-4. [Usage](#usage)
-    * [Test Harness](#writing-a-test-harness)
-    * [Instrumenting](#instrumenting-the-target-library)
-    * [Building](#building-the-test-executable)
-    * [Running with LibFuzzer](#running-winsharpfuzz-with-libfuzzer)
-5. [Further Work](#further-work)
+- [WinSharpFuzz: Coverage-based Fuzzing for Windows .NET](#winsharpfuzz-coverage-based-fuzzing-for-windows-net)
+  - [Table of Contents](#table-of-contents)
+  - [Acknowledgements](#acknowledgements)
+  - [Requirements](#requirements)
+  - [Installation](#installation)
+      - [Using NuGet](#using-nuget)
+      - [From Source](#from-source)
+  - [Usage](#usage)
+      - [Writing a Test Harness](#writing-a-test-harness)
+      - [Instrumenting the Target Library](#instrumenting-the-target-library)
+      - [Building the Test Executable](#building-the-test-executable)
+      - [Running WinSharpFuzz with LibFuzzer](#running-winsharpfuzz-with-libfuzzer)
+- [Further Work](#further-work)
 
 ## Acknowledgements
 
-This project is an unofficial fork of [SharpFuzz](https://github.com/metalnem/sharpfuzz) for the Windows platform; as such, portions of this codebase were written by Nemanja Mijailovic (see NOTICE.txt for license information). This project wouldn't be possible without the groundwork he laid by developing SharpFuzz.
+This project is an unofficial fork of [WinSharpFuzz](https://github.com/nallixion/winsharpfuzz) which is an unofficial fork of [SharpFuzz](https://github.com/metalnem/sharpfuzz) for the Windows platform; as such, portions of this codebase were written by Nemanja Mijailovic (see NOTICE.txt for license information). This project wouldn't be possible without the groundwork he laid by developing SharpFuzz.
  
 Special thanks also goes to ManTech Corporation (www.mantech.com) for facilitating the development and open source release of this fuzzing tool.
 
@@ -49,8 +53,8 @@ The easiest way to use this library is by pulling the appropriate tools and asse
 there are two tools and one library that we'll use.
 
 To install the tools, use the following commands within a PowerShell instance:
-- `dotnet tool install -g WinSharpFuzz.CommandLine`
-- `dotnet tool install -g WinSharpFuzz.Instrument`
+- `dotnet tool install -g Nallixion.WinSharpFuzz.CommandLine`
+- `dotnet tool install -g Nallixion.WinSharpFuzz.Instrument`
 
 These will install everything needed to run the above commands (the -g flag installs them globally). 
 Once installed, these tools can be executed using `dotnet winsharpfuzz [args]` or 
@@ -74,7 +78,7 @@ Congratulations, you now have WinSharpFuzz installed and ready to use!
 Alternatively, one can build this project directly from its C# code. This is relatively 
 straightforward, and can be accomplished either in Visual Studio or by using the `dotnet` command 
 in a powershell terminal. We'll assume you've already either downloaded and unzipped the code or 
-cloned this project using `git clone https://github.com/nathaniel-bennett/winsharpfuzz.git`.
+cloned this project using `git clone https://github.com/nallixion/winsharpfuzz.git`.
 
 If using Visual Studio, navigate to the downloaded code and open the WinSharpFuzz.sln project 
 (make sure you haven't just opened the folder that the .sln file resides in). Click the 'Build' tab, 
@@ -89,8 +93,8 @@ The resulting libraries can be found in
 necessary WinSharpFuzz libraries we will need, this build process also outputs two executable tools: 
 one for instrumenting C# libraries so that program control flow can be 
 detected by WinSharpFuzz, and one for actually running libFuzzer on our project. The instrumentation and 
-libFuzzer tools will be output to `src\WinSharpFuzz.Instrument\bin\Debug\net5.0\WinSharpFuzz.Instrument.exe` and 
-`src\WinSharpFuzz.CommandLine\bin\Debug\net5.0\WinSharpFuzz.CommandLine.exe` respectively.
+libFuzzer tools will be output to `src\WinSharpFuzz.Instrument\bin\Debug\net8.0\WinSharpFuzz.Instrument.exe` and 
+`src\WinSharpFuzz.CommandLine\bin\Debug\net8.0\WinSharpFuzz.CommandLine.exe` respectively.
 
 As an aside, the libFuzzer tool makes use of two precompiled C++ binaries, `winsharpfuzz-libfuzzer-x64.exe` and 
 `winsharpfuzz-libfuzzer-x86.exe`. If you want to build these from source as well, refer to the README found 

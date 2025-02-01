@@ -6,12 +6,12 @@
  
   <PropertyGroup>
     <Authors>Nathaniel Bennett</Authors>
-    <RepositoryUrl>https://github.com/nathaniel-bennett/winsharpfuzz.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/nallixion/winsharpfuzz.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Copyright>Copyright © 2021, Nathaniel Bennett</Copyright>
+    <Copyright>Copyright © 2025, Mark Burton</Copyright>
     <PackageTags>fuzzing testing fuzz-testing fuzzer libfuzzer windows</PackageTags>
   </PropertyGroup>
 </Project>
